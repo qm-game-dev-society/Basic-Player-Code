@@ -1,5 +1,5 @@
 class_name Bullet
-extends Node2D
+extends Area2D
 
 @export var bullet_dammage : float = 10
 @export var bullet_critical : float = 0.3
@@ -21,6 +21,7 @@ func _on_timer_timeout():
 
 
 func _on_area_entered(area):
+
 	if not area.is_in_group("player") and not area.is_in_group("bullet"):
 		bullet_dammage = bullet_dammage * pierce
 	if bullet_dammage < 1:
@@ -28,3 +29,8 @@ func _on_area_entered(area):
 
 func destroyBullet():
 	queue_free()
+
+
+func _on_body_entered(body):
+	if(body.is_in_group("ground")):
+		destroyBullet()

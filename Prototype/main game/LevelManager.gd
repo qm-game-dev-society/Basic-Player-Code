@@ -19,6 +19,7 @@ func _ready():
 # Checks if player has entered collsion section and starts respawn procedure
 # if this is the case
 func DeadZone(body: Node2D) -> void:
+	print("hello")
 	if body.name == "Player":
 		player.Kill()
 		respawn()
