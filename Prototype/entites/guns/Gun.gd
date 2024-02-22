@@ -3,45 +3,43 @@ extends Node2D
 
 signal GunAction(name : String)
 
+var player : Player
 
+var GunName : String
+var BulletScene : PackedScene
 
-var _GunName
-var _HoldDown : bool
-var _ReloadTime : float
-var _CoolDown : float
+var AutoFire : bool
+var ReloadTime : float
+var CoolDown : float
+var SpreadAmount: float
 
 
 
 func _ready():
-	SetName("GUN")
+	look_at(get_global_mouse_position())
 
-func SetName(gunName: String):
-	_GunName = gunName
-
-func GetName() -> String:
-	return _GunName
-
-func SetReloadTime(time : float):
-	_ReloadTime = time
-
-func GetReloadTime() -> float:
-	return _ReloadTime
-
-func SetCoolDownTime(time : float):
-	_CoolDown = time
-
-func GetCoolDownTime() -> float:
-	return _CoolDown
+func _process(_delta):
+	look_at(get_global_mouse_position())
 
 func FIRE(prepTime : float) -> void: # Actived when gun is fired
-	print("fire gun:" + _GunName + ", prepTime:" + str(prepTime))
+	print("fire gun:" + GunName + ", prepTime:" + str(prepTime))
 
 func RELOAD() -> void: # Activated when reload key is pressed
-	print("reloaded gun:" + _GunName)
+	print("reloaded gun:" + GunName)
 
 func ARM() -> void: # Activated when gun is armed
-	print("armed gun:" + _GunName)
+	print("armed gun:" + GunName)
 
 func UNARM() -> void: # Activated when gun is unarmed
-	print("unarmed gun:" + _GunName)
+	print("unarmed gun:" + GunName)
 
+func InstantiateBullet() -> Bullet:
+	var bullet : Bullet = BulletScene.instantiate() as Bullet
+	get_parent().get_parent().add_child(bullet)
+	bullet.global_position = global_position
+	bullet.global_rotation = global_rotation + PI*SpreadAmount*randf_range(-(bullet.bullet_spread), bullet.bullet_spread)/6
+	player.healthInterface.died.connect(bullet.destroyBullet)
+	return bullet
+
+func DestroyAllBullets() -> void:
+	pass

@@ -20,7 +20,7 @@ func _ready():
 # if this is the case
 func DeadZone(body: Node2D) -> void:
 	if body.name == "Player":
-		player.Died()
+		player.Kill()
 		respawn()
 	
 # Resets the level and respawns the player at the default spawn point

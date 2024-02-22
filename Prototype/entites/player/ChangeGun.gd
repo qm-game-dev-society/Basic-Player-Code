@@ -9,14 +9,13 @@ func enter(_msg := {}) -> void:
 	
 	scene = load("res://entites/guns/gunScenes/" + _msg["gun"] + ".tscn")
 	
-	
 
 # Instantiates gun as child of player node and calls ARM method within the 
 # gun node then transitions back to idle
 func update(_delta: float) -> void:
-
 	player.gun = scene.instantiate()
-	player.gun.position = Vector2.ZERO
 	player.add_child(player.gun)
+	player.gun.position = Vector2.ZERO
+	player.gun.player = player
 	player.gun.ARM()
 	state_machine.transition_to("Idle")

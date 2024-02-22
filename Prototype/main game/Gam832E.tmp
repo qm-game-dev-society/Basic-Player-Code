@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cttw8pl7ogmxd"]
+
+[ext_resource type="Script" path="res://main game/main.gd" id="1_0tis0"]
+[ext_resource type="Texture2D" uid="uid://d31d8rso4ibm0" path="res://assets/prototype/prototype-tilemap.png" id="1_nge0q"]
+[ext_resource type="PackedScene" uid="uid://difwyqernv0y5" path="res://entites/player/player.tscn" id="2_8wnmv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dnxap"]
+texture = ExtResource("1_nge0q")
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_8u174"]
+physics_layer_0/collision_layer = 1
+sources/3 = SubResource("TileSetAtlasSource_dnxap")
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0tis0")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="World"]
+zoom = Vector2(6, 6)
+
+[node name="Geometry" type="Node2D" parent="World"]
+
+[node name="Level tilemap" type="TileMap" parent="World/Geometry"]
+tile_set = SubResource("TileSet_8u174")
+format = 2
+layer_0/tile_data = PackedInt32Array(196604, 65539, 1, 196605, 65539, 1, 196606, 65539, 1, 196607, 65539, 1, 131072, 65539, 1, 131073, 65539, 1, 131074, 65539, 1, 131075, 65539, 1, 196611, 65539, 1, 196610, 65539, 1, 196609, 65539, 1, 196608, 65539, 1, 262143, 65539, 1, 262142, 65539, 1, 262141, 65539, 1, 262140, 65539, 1)
+
+[node name="Player" parent="World" instance=ExtResource("2_8wnmv")]
+position = Vector2(1, -23)
+scale = Vector2(1.01096, 0.894535)
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

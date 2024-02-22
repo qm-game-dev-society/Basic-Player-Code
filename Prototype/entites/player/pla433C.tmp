@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://difwyqernv0y5"]
+
+[ext_resource type="Script" path="res://entites/player/player.gd" id="1_s2ovc"]
+[ext_resource type="Texture2D" uid="uid://dkcpykd6n5310" path="res://assets/prototype/prototype-player.png" id="1_vyyqg"]
+[ext_resource type="Script" path="res://entites/player/GunInterface.gd" id="3_6vjb5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flp3v"]
+size = Vector2(11, 16)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_s2ovc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_vyyqg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_flp3v")
+
+[node name="GunInterface" type="Node2D" parent="."]
+script = ExtResource("3_6vjb5")

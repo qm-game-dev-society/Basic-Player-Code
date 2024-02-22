@@ -16,6 +16,7 @@ const N_JUMPIMPULSE = 300
 
 #Current Player values
 var gun : Gun
+var canFire : bool
 var speed = 250
 var maxSpeed = 120
 var airSpeed = 60
@@ -29,6 +30,7 @@ func _ready():
 	stateMachine = get_node("StateMachine") as StateMachine
 	gunInterface = get_node("GunInterface") as StateMachine
 	healthInterface = get_node("HealthInterface") as HealthSystem
+	assert(healthInterface != null)
 	
 	# For debug 
 	stateMachine.transitioned.connect(OnPlayerChangeState)
@@ -53,6 +55,9 @@ func Respawn(respawnPoint : Vector2):
 	healthInterface.ResetHealth()
 	stateMachine.transition_to("Intro")
 
+func Kill():
+	healthInterface.Kill()
+	Died()
 
 func Died():
 	stateMachine.transition_to("Dead")

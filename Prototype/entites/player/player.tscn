@@ -32,7 +32,7 @@ script = ExtResource("3_oiv64")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_m0sy7")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Intro")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_6f5ml")

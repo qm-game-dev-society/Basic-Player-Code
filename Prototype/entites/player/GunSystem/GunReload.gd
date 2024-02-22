@@ -6,7 +6,7 @@ var timePass : float
 func enter(_msg := {}) -> void:
 	print("Reloading gun")
 	player.gun.RELOAD()
-	timePass = player.gun.GetReloadTime()
+	timePass = player.gun.ReloadTime
 
 # Waits until timer finishes and transitions back to idle
 func update(_delta: float) -> void:
