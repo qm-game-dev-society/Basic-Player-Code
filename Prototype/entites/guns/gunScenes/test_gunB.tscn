@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://du5ebxt33mt7h"]
+
+[ext_resource type="Script" path="res://entites/guns/test_gun.gd" id="1_tw1is"]
+[ext_resource type="Texture2D" uid="uid://crq4iglltrgud" path="res://assets/prototype/prototype-gun.png" id="2_ftnlo"]
+
+[node name="test_gunB" type="Node2D"]
+scale = Vector2(0.980984, 0.984948)
+script = ExtResource("1_tw1is")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_ftnlo")
+flip_h = true
