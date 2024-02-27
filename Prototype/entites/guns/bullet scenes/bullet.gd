@@ -8,7 +8,7 @@ extends Area2D
 @export var bullet_velocity = 10
 @export var bullet_spread : float = 0.1
 @export var bullet_count : int = 1
-@export var pierce : float = 0
+@export var pierce : float = 0.6
 
 
 func _physics_process(delta):
@@ -32,5 +32,13 @@ func destroyBullet():
 
 
 func _on_body_entered(body):
+	if(body is Entity):
+		var entity = body as Entity
+		entity.hit(bullet_dammage)
+		bullet_dammage = bullet_dammage * pierce
+		print(bullet_dammage)
+	if bullet_dammage < 1:
+		destroyBullet()
+
 	if(body.is_in_group("ground")):
 		destroyBullet()

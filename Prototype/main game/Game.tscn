@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cttw8pl7ogmxd"]
+[gd_scene load_steps=10 format=3 uid="uid://cttw8pl7ogmxd"]
 
 [ext_resource type="Script" path="res://main game/main.gd" id="1_0tis0"]
 [ext_resource type="Texture2D" uid="uid://d31d8rso4ibm0" path="res://assets/prototype/prototype-tilemap.png" id="1_nge0q"]
 [ext_resource type="PackedScene" uid="uid://difwyqernv0y5" path="res://entites/player/player.tscn" id="2_8wnmv"]
 [ext_resource type="Script" path="res://main game/LevelManager.gd" id="2_tojh1"]
 [ext_resource type="Script" path="res://levels/TestLevel.gd" id="3_abvwv"]
+[ext_resource type="PackedScene" uid="uid://6gxukpgqum08" path="res://entites/template/enemy.tscn" id="6_dk8xo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dnxap"]
 texture = ExtResource("1_nge0q")
@@ -55,3 +56,12 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Dummy" parent="." instance=ExtResource("6_dk8xo")]
+position = Vector2(-148, -4)
+
+[node name="Dummy2" parent="." instance=ExtResource("6_dk8xo")]
+position = Vector2(-73, -1)
+
+[node name="Dummy3" parent="." instance=ExtResource("6_dk8xo")]
+position = Vector2(-108, -2)
