@@ -8,7 +8,16 @@ func _ready():
 	ReloadTime = 3
 	CoolDown = 0.2
 	SpreadAmount = 0.1
+	
+	BulletDammage = 10
+	BulletCritical = 0.3
+	BulletVelocity = 10
+	BulletPierce = 0.6
+	
+	super._ready()
 
 
-func FIRE(prepTime : float) -> void:
+
+
+func FIRE(_prepTime : float) -> void:
 	InstantiateBullet()

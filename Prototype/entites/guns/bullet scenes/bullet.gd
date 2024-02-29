@@ -1,17 +1,13 @@
 class_name Bullet
 extends Area2D
 
-@export var bullet_dammage : float = 10
-@export var bullet_critical : float = 0.3
-@export var bullet_rate : float = 0.2
-@export var autofire : bool = false
-@export var bullet_velocity = 10
-@export var bullet_spread : float = 0.1
-@export var bullet_count : int = 1
-@export var pierce : float = 0.6
+@export var bullet_dammage : float
+@export var bullet_critical : float 
+@export var bullet_velocity: float
+@export var pierce : float 
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position.x += bullet_velocity*cos(global_rotation)
 	position.y += bullet_velocity*sin(global_rotation)
 	
