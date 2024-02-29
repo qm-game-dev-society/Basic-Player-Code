@@ -13,12 +13,12 @@ func _ready():
 	# (Eg falling off the map) and attaches their body entered signal to the
 	# Dead zone method
 	for _node in level.get_children():
-		if _node.name == "DeadZone":
-			_node.body_entered.connect(DeadZone)
+		if _node.is_in_group("deadzone"):
+			_node.body_entered.connect(EnterDeadZone)
 
 # Checks if player has entered collsion section and starts respawn procedure
 # if this is the case
-func DeadZone(body: Node2D) -> void:
+func EnterDeadZone(body: Node2D) -> void:
 	print("hello")
 	if body.name == "Player":
 		player.Kill()

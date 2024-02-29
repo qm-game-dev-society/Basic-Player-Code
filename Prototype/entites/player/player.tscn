@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entites/player/player.gd" id="1_s2ovc"]
 [ext_resource type="Texture2D" uid="uid://dkcpykd6n5310" path="res://assets/prototype/prototype-player.png" id="1_vyyqg"]
-[ext_resource type="Script" path="res://entites/player/PlayerHealthSystem.gd" id="3_oiv64"]
+[ext_resource type="PackedScene" uid="uid://b244kocptwfmg" path="res://entites/healthInterface.tscn" id="3_bmltj"]
 [ext_resource type="Script" path="res://entites/player/GunSystem/GunIdle.gd" id="4_3fwqx"]
 [ext_resource type="Script" path="res://entites/player/StateMachine/Player_Idle.gd" id="4_6f5ml"]
 [ext_resource type="Script" path="res://main game/StateMachine/StateMachine.gd" id="4_m0sy7"]
@@ -27,8 +27,7 @@ texture = ExtResource("1_vyyqg")
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_flp3v")
 
-[node name="HealthInterface" type="Node" parent="."]
-script = ExtResource("3_oiv64")
+[node name="HealthInterface" parent="." instance=ExtResource("3_bmltj")]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_m0sy7")

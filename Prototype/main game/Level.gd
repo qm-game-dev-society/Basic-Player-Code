@@ -17,7 +17,10 @@ func getSpawnPosition() -> Vector2:
 	return _spawnPosition
 
 func Respawn():
-	print("Reset level for respawn")
+	for child in self.get_children():
+		if(child.is_in_group("entity")):
+			var enemy : Entity = child as Entity
+			enemy.reset()
 
 
 

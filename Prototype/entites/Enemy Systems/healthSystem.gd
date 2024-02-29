@@ -7,6 +7,7 @@ var _maxHealth  : int
 var _currentHealth : int
 
 func _ready():
+	add_to_group("HealthSystem")
 	_currentHealth = _maxHealth
 
 func CurrentHealth() -> int:

@@ -13,6 +13,7 @@ const N_MAXSPEED = 120
 const N_AIRSPEED = 60
 const N_FRICTION = 3
 const N_JUMPIMPULSE = 300
+const N_MAXHEALTH = 50
 
 #Current Player values
 var gun : Gun
@@ -29,9 +30,15 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	stateMachine = get_node("StateMachine") as StateMachine
 	gunInterface = get_node("GunInterface") as StateMachine
-	healthInterface = get_node("HealthInterface") as HealthSystem
-	assert(healthInterface != null)
 	
+	for child in get_children():
+		if(child.is_in_group("HealthSystem")):
+			healthInterface = child;
+	
+	
+	
+	assert(healthInterface != null)
+
 	# For debug 
 	stateMachine.transitioned.connect(OnPlayerChangeState)
 	# For debug
@@ -40,6 +47,10 @@ func _ready():
 	# Allows the health interface to inform the main player script upon death
 	healthInterface.died.connect(Died)
 	
+	healthInterface._maxHealth = N_MAXHEALTH
+	healthInterface.ResetHealth()
+	
+
 
 # Debug for playerstate machine changing states
 func OnPlayerChangeState(StateName : String):

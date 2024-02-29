@@ -1,14 +1,24 @@
-class_name Entity
-extends CharacterBody2D
+class_name Dummy
+extends Enemy
 
 var cooldown : float
 var hurt : float
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+func _ready() -> void:
+	maxHealth = 50
+	super._ready()
+	
+
 
 func hit(damage:float) -> void:
 	hurt += damage
 	cooldown = 5
+
+func reset() -> void:
+	super.reset()
+	cooldown = 0
+	hurt = 0
+
 
 func _process(delta):
 	if cooldown > 0:
@@ -19,10 +29,7 @@ func _process(delta):
 		hurt = 0
 
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	super._physics_process(delta)
 
-
-	move_and_slide()
 
 

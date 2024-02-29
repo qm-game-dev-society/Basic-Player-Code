@@ -24,6 +24,7 @@ var BulletPierce : float
 
 func _ready():
 	look_at(get_global_mouse_position())
+	print("hello_")
 
 func _process(_delta):
 	look_at(get_global_mouse_position())
