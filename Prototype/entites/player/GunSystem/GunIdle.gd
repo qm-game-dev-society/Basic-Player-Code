@@ -9,7 +9,7 @@ func enter(_msg := {}) -> void:
 #state if required
 func update(_delta: float) -> void:
 	if player.canFire:
-		if Input.is_action_just_pressed("ATTACK_reload"):
-			state_machine.transition_to("Reload")
+		##if Input.is_action_just_pressed("ATTACK_reload"):
+		##	state_machine.transition_to("Reload")
 		if Input.is_action_pressed("ATTACK_shoot"):
 			state_machine.transition_to("Fire")

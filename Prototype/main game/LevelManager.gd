@@ -41,6 +41,9 @@ func _ready():
 func _process(_delta):
 	camera.position = player.position
 
+func _input(event):
+	if event is InputEventKey and event.keycode == KEY_R:
+		respawn()
 
 func StartLevel():
 	for _node in get_children():
