@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://entites/guns/gunScenes/test_gun.gd" id="1_jp1cv"]
 [ext_resource type="Texture2D" uid="uid://crq4iglltrgud" path="res://assets/prototype/prototype-gun.png" id="2_rx3g7"]
 
-[node name="test_gunA" type="Node2D"]
+[node name="test_gun" type="Node2D"]
 scale = Vector2(0.980984, 0.984948)
 script = ExtResource("1_jp1cv")
 

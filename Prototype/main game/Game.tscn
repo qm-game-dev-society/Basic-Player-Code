@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cttw8pl7ogmxd"]
+[gd_scene load_steps=4 format=3 uid="uid://cttw8pl7ogmxd"]
 
 [ext_resource type="Script" path="res://main game/main.gd" id="1_0tis0"]
 [ext_resource type="Script" path="res://main game/LevelManager.gd" id="2_tojh1"]
+[ext_resource type="FontFile" uid="uid://b7j76cbmhv0tg" path="res://assets/Roboto-Regular.ttf" id="3_4wxjn"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0tis0")
@@ -9,8 +10,15 @@ script = ExtResource("1_0tis0")
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("2_tojh1")
 
-[node name="GUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="HUD"]
+offset_left = 23.0
+offset_top = 53.0
+offset_right = 211.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("3_4wxjn")
+theme_override_font_sizes/font_size = 40
+text = "R - reset level
+left mouse click - fire
+wasd/arrow keys - move"
