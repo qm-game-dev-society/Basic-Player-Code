@@ -1,68 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cttw8pl7ogmxd"]
+[gd_scene load_steps=3 format=3 uid="uid://cttw8pl7ogmxd"]
 
 [ext_resource type="Script" path="res://main game/main.gd" id="1_0tis0"]
-[ext_resource type="Texture2D" uid="uid://d31d8rso4ibm0" path="res://assets/prototype/prototype-tilemap.png" id="1_nge0q"]
-[ext_resource type="PackedScene" uid="uid://difwyqernv0y5" path="res://entites/player/player.tscn" id="2_8wnmv"]
 [ext_resource type="Script" path="res://main game/LevelManager.gd" id="2_tojh1"]
-[ext_resource type="Script" path="res://levels/TestLevel.gd" id="3_abvwv"]
-[ext_resource type="PackedScene" uid="uid://6gxukpgqum08" path="res://entites/dummy/dummy.tscn" id="5_ur6dp"]
-[ext_resource type="PackedScene" uid="uid://dp87ycbx2my31" path="res://entites/enemy/testEnemy.tscn" id="7_uiy67"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dnxap"]
-texture = ExtResource("1_nge0q")
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_8u174"]
-physics_layer_0/collision_layer = 1
-sources/3 = SubResource("TileSetAtlasSource_dnxap")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d00wo"]
-size = Vector2(703.324, 123)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0tis0")
 
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("2_tojh1")
-
-[node name="Camera2D" type="Camera2D" parent="World"]
-zoom = Vector2(2.62, 2.62)
-
-[node name="Level" type="Node2D" parent="World"]
-script = ExtResource("3_abvwv")
-
-[node name="Enemy" parent="World/Level" instance=ExtResource("7_uiy67")]
-position = Vector2(-122, 12)
-
-[node name="Level tilemap" type="TileMap" parent="World/Level" groups=["ground"]]
-tile_set = SubResource("TileSet_8u174")
-format = 2
-layer_0/name = "ground"
-layer_0/z_index = 1
-layer_0/tile_data = PackedInt32Array(196603, 65539, 1, 196604, 65539, 1, 196605, 65539, 1, 327674, 65539, 1, 393210, 65539, 1, 327675, 65539, 1, 393211, 65539, 1, 327676, 65539, 1, 393212, 65539, 1, 327677, 65539, 1, 393213, 65539, 1, 327678, 65539, 1, 393214, 65539, 1, 327679, 65539, 1, 393215, 65539, 1, 262144, 65539, 1, 327680, 65539, 1, 262145, 65539, 1, 327681, 65539, 1, 2, 65539, 1, 262146, 65539, 1, 327682, 65539, 1, 3, 65539, 1, 262147, 65539, 1, 327683, 65539, 1, 4, 65539, 1, 262148, 65539, 1, 327684, 65539, 1, 262149, 65539, 1, 327685, 65539, 1, 65536, 65539, 1, 65537, 65539, 1, 65538, 65539, 1, 65539, 65539, 1, -131065, 65539, 1, -131064, 65539, 1, -131063, 65539, 1, 262154, 65539, 1, 393221, 65539, 1, 327690, 65539, 1, 393227, 65539, 1, 393228, 65539, 1, 393229, 65539, 1, 393226, 65539, 1, 393209, 65539, 1, 393216, 65539, 1, 393217, 65539, 1, 393208, 65539, 1, 458747, 65539, 1, 458746, 65539, 1, 458745, 65539, 1, 393207, 65539, 1, 393206, 65539, 1, 393205, 65539, 1, 393204, 65539, 1, 458740, 65539, 1, 458741, 65539, 1, 458742, 65539, 1, 458743, 65539, 1, 458744, 65539, 1, -131066, 65539, 1, 458748, 65539, 1, 458749, 65539, 1, 458750, 65539, 1, 458751, 65539, 1, 393218, 65539, 1, 393219, 65539, 1, 393220, 65539, 1, 327673, 65539, 1, 327672, 65539, 1, 327671, 65539, 1, 327670, 65539, 1, 327669, 65539, 1, 327668, 65539, 1, 262155, 65539, 1, 262156, 65539, 1, 262157, 65539, 1, 327692, 65539, 1, 327693, 65539, 1, 327691, 65539, 1)
-
-[node name="DeadZone" type="Area2D" parent="World/Level" groups=["deadzone"]]
-position = Vector2(20, 6)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Level/DeadZone"]
-position = Vector2(-11, 191)
-shape = SubResource("RectangleShape2D_d00wo")
-
-[node name="dummy" parent="World/Level" instance=ExtResource("5_ur6dp")]
-position = Vector2(50, -13)
-
-[node name="dummy2" parent="World/Level" instance=ExtResource("5_ur6dp")]
-position = Vector2(133, -46)
-
-[node name="dummy3" parent="World/Level" instance=ExtResource("5_ur6dp")]
-position = Vector2(-62, 11)
-
-[node name="Player" parent="World" instance=ExtResource("2_8wnmv")]
-position = Vector2(1, -23)
-scale = Vector2(2, 2)
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3

@@ -3,17 +3,17 @@ extends Node
 
 signal died
 
-var _maxHealth  : int
-var _currentHealth : int
+var _maxHealth  : float
+var _currentHealth : float
 
 func _ready():
 	add_to_group("HealthSystem")
 	_currentHealth = _maxHealth
 
-func CurrentHealth() -> int:
+func CurrentHealth() -> float:
 	return _currentHealth
 
-func ChangeHealth(change: int) -> void:
+func ChangeHealth(change: float) -> void:
 	_currentHealth += change
 	CheckDead()
 
