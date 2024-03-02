@@ -17,7 +17,7 @@ physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_dnxap")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d00wo"]
-size = Vector2(2028, 17438.5)
+size = Vector2(2028, 1302.5)
 
 [node name="TestLevel" type="Node2D" groups=["level"]]
 script = ExtResource("1_u65vw")
@@ -36,7 +36,7 @@ layer_0/tile_data = PackedInt32Array(196603, 65539, 1, 196604, 65539, 1, 196605,
 position = Vector2(20, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZone"]
-position = Vector2(313, 8851.75)
+position = Vector2(313, 783.75)
 shape = SubResource("RectangleShape2D_d00wo")
 
 [node name="dummy" parent="." instance=ExtResource("4_4y4i6")]

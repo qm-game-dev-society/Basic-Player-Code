@@ -12,12 +12,11 @@ var respawnTime : float = 2
 
 # values 
 var resetting : bool = false
-
-
+var cancelRespawn : bool
 
 
 func loadLevel(LevelName : String) -> void:
-	
+	cancelRespawn = true
 	# Clear all nodes currently in world
 	# TODO: carry player node over when loading new levels
 	for n in get_children():
@@ -36,8 +35,8 @@ func loadLevel(LevelName : String) -> void:
 	
 	cameraScene = preload("res://main game/PlayerCamera.tscn")
 	camera = cameraScene.instantiate() as Node2D
-	add_child(camera)
-	camera.position = Vector2.ZERO
+	player.add_child(camera)
+
 	
 	StartLevel()
 	
@@ -47,10 +46,11 @@ func _ready():
 	loadLevel("TestLevel")
 
 func _process(_delta):
-	camera.position = player.position
+	pass
 
 func _input(event):
 	if event is InputEventKey and event.keycode == KEY_R:
+		cancelRespawn = false
 		reset()
 
 func StartLevel():
@@ -64,26 +64,34 @@ func StartLevel():
 # Checks if player has entered collsion section and starts respawn procedure
 # if this is the case
 func EnterDeadZone(body: Node2D) -> void:
-	print("hello")
+	
 	if body.name == "Player":
+		print("dead zone ")
 		killPlayer()
 	
 # Resets the level and respawns the player at the default spawn point
 # Need to change later if support for checkpoints is added
 func reset() -> void:
+	if cancelRespawn:
+		cancelRespawn = false
+		print("cancel respawn")
+		return
 	if resetting == true: 
 		return
 	resetting = true
-	camera.position_smoothing_enabled = false
 	destroyAllBullets()
 	level.Respawn()
 	player.Respawn(level.getSpawnPosition())
-	await get_tree().create_timer(0.3).timeout
-	camera.position_smoothing_enabled = true
+	camera.drag_horizontal_enabled = false
+	camera.drag_vertical_enabled = false
+	await get_tree().create_timer(0.1).timeout
+	camera.drag_horizontal_enabled = true
+	camera.drag_vertical_enabled = true
 	resetting = false
 
 # reset but for when player dies
 func killPlayer() -> void:
+	cancelRespawn = false
 	player.Died()
 	await get_tree().create_timer(respawnTime).timeout
 	reset()

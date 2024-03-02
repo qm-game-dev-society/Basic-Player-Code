@@ -22,3 +22,22 @@ theme_override_font_sizes/font_size = 40
 text = "R - reset level
 left mouse click - fire
 wasd/arrow keys - move"
+
+[node name="Button" type="Button" parent="HUD"]
+offset_left = 871.0
+offset_top = 325.0
+offset_right = 1038.0
+offset_bottom = 406.0
+focus_mode = 0
+text = " Load test level b"
+
+[node name="Button2" type="Button" parent="HUD"]
+offset_left = 874.0
+offset_top = 211.0
+offset_right = 1041.0
+offset_bottom = 292.0
+focus_mode = 0
+text = " Load test level a"
+
+[connection signal="pressed" from="HUD/Button" to="World" method="loadLevel" binds= ["TestWorld"]]
+[connection signal="pressed" from="HUD/Button2" to="World" method="loadLevel" binds= ["TestLevel"]]
