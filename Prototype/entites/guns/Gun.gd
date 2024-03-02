@@ -39,10 +39,10 @@ func UNARM() -> void: # Activated when gun is unarmed
 func InstantiateBullet() -> Bullet:
 	var bullet : Bullet = BulletScene.instantiate() as Bullet
 	get_parent().get_parent().add_child(bullet)
+	print(bullet.get_parent().name)
 	bullet.global_position = global_position
 	bullet.global_rotation = global_rotation + PI*SpreadAmount*randf_range(-(BulletSpread), BulletSpread)/6
 	SetBulletValues(bullet)
-	player.healthInterface.died.connect(bullet.destroyBullet)
 	return bullet
 
 func SetBulletValues(bullet) -> void:

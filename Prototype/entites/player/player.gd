@@ -38,14 +38,14 @@ func _ready():
 	
 	
 	assert(healthInterface != null)
+	
+	healthInterface.died.connect(Died)
 
 	# For debug 
 	stateMachine.transitioned.connect(OnPlayerChangeState)
 	# For debug
 	gunInterface.transitioned.connect(OnGunChangeState)
 	
-	# Allows the health interface to inform the main player script upon death
-	healthInterface.died.connect(Died)
 	
 	healthInterface._maxHealth = N_MAXHEALTH
 	healthInterface.ResetHealth()
@@ -65,12 +65,13 @@ func Respawn(respawnPoint : Vector2):
 	position = respawnPoint
 	healthInterface.ResetHealth()
 	stateMachine.transition_to("Intro")
-
-func Kill():
-	healthInterface.Kill()
-	Died()
+	visible = true
 
 func Died():
+	visible = false
 	stateMachine.transition_to("Dead")
-	
+
+#TODO: Make this work no matter the collision layer originally active
+func _setCollision(option : bool) -> void:
+	set_collision_layer_value(1, option)
 
