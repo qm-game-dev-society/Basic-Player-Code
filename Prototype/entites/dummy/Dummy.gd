@@ -29,7 +29,8 @@ func _process(delta):
 		hurt = 0
 
 func _physics_process(delta):
-	fall(delta)
+	#fall(delta)
+	pass
 
 
 
