@@ -14,9 +14,10 @@ func _ready():
 	BulletVelocity = 10
 	BulletPierce = 0.6
 	
-	super._ready()
+	angleGun()
 
-
+func _physics_process(delta):
+	angleGun()
 
 
 func FIRE(_prepTime : float) -> void:

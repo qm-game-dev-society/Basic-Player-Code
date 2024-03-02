@@ -6,7 +6,7 @@ var hurt : float
 
 func _ready() -> void:
 	maxHealth = 50
-	super._ready()
+	SetUpEnemy()
 	
 
 
@@ -29,7 +29,7 @@ func _process(delta):
 		hurt = 0
 
 func _physics_process(delta):
-	super._physics_process(delta)
+	fall(delta)
 
 
 

@@ -6,12 +6,12 @@ var isGravity : bool
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _ready() -> void:
+func SetUpEntity() -> void:
 	add_to_group("entity")
 	set_visibility_layer_bit(0,false)
 	set_visibility_layer_bit(1, true)
 
-func _physics_process(delta):
+func fall(delta) -> void:
 	if isGravity && not is_on_floor():
 		velocity.y += gravity * delta
 	

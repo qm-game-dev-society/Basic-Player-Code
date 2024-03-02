@@ -21,12 +21,7 @@ var BulletSpread : float
 var BulletPierce : float 
 
 
-
-func _ready():
-	look_at(get_global_mouse_position())
-	print("hello_")
-
-func _process(_delta):
+func angleGun():
 	look_at(get_global_mouse_position())
 
 func FIRE(prepTime : float) -> void: # Actived when gun is fired

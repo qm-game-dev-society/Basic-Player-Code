@@ -6,7 +6,8 @@ var healthInterface : HealthSystem
 var StartPosition : Vector2
 var maxHealth : float
 
-func _ready() -> void:
+
+func SetUpEnemy() -> void:
 	add_to_group("enemy")
 	
 	StartPosition = position
@@ -22,10 +23,11 @@ func _ready() -> void:
 	healthInterface._maxHealth = maxHealth
 	healthInterface.ResetHealth()
 	
-	super._ready()
+	SetUpEntity()
+	
 
 func _physics_process(delta):
-	super._physics_process(delta)
+	fall(delta)
 
 func hit(damage:float) -> void:
 	healthInterface.ChangeHealth(-damage)
