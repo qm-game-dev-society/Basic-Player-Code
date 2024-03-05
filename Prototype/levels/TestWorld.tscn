@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://levels/TestWorld.gd" id="1_p5w8u"]
 [ext_resource type="PackedScene" uid="uid://dp87ycbx2my31" path="res://entites/enemy/testEnemy.tscn" id="2_xorrs"]
 [ext_resource type="Texture2D" uid="uid://d31d8rso4ibm0" path="res://assets/prototype/prototype-tilemap.png" id="3_8sj31"]
-[ext_resource type="PackedScene" uid="uid://6gxukpgqum08" path="res://entites/dummy/dummy.tscn" id="4_xt50u"]
+[ext_resource type="PackedScene" uid="uid://6gxukpgqum08" path="res://entites/enemy/dummy/dummy.tscn" id="4_xt50u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dnxap"]
 texture = ExtResource("3_8sj31")
@@ -43,3 +43,6 @@ position = Vector2(697, -55)
 
 [node name="Enemy3" parent="." instance=ExtResource("2_xorrs")]
 position = Vector2(892, -62)
+
+[node name="LevelEnd" type="Node2D" parent="." groups=["levelEnd"]]
+position = Vector2(777, -97)

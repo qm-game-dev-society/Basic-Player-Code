@@ -18,11 +18,12 @@ const N_MAXHEALTH = 50
 #Current Player values
 var gun : Gun
 var canFire : bool
-var speed = 250
-var maxSpeed = 120
-var airSpeed = 60
-var friction = 3
-var jump_impulse = 300
+var canMove : bool
+var speed : float = 250
+var maxSpeed : float = 120
+var airSpeed : float = 60
+var friction : float = 3
+var jump_impulse : float = 300
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -49,7 +50,6 @@ func _ready():
 	
 	healthInterface._maxHealth = N_MAXHEALTH
 	healthInterface.ResetHealth()
-	
 
 
 # Debug for playerstate machine changing states
@@ -64,10 +64,12 @@ func Respawn(respawnPoint : Vector2):
 	print("player respawn")
 	position = respawnPoint
 	healthInterface.ResetHealth()
-	stateMachine.transition_to("Intro")
+	stateMachine.transition_to("Idle")
+	canFire = true
 	visible = true
 
 func Died():
+	canFire = false
 	visible = false
 	stateMachine.transition_to("Dead")
 
