@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://levels/TestLevel.gd" id="1_u65vw"]
 [ext_resource type="PackedScene" uid="uid://dp87ycbx2my31" path="res://entites/enemy/testEnemy.tscn" id="2_2fjev"]
 [ext_resource type="Texture2D" uid="uid://d31d8rso4ibm0" path="res://assets/prototype/prototype-tilemap.png" id="3_intju"]
-[ext_resource type="PackedScene" uid="uid://6gxukpgqum08" path="res://entites/dummy/dummy.tscn" id="4_4y4i6"]
+[ext_resource type="PackedScene" uid="uid://6gxukpgqum08" path="res://entites/enemy/dummy/dummy.tscn" id="4_4y4i6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dnxap"]
 texture = ExtResource("3_intju")
@@ -20,6 +20,7 @@ sources/3 = SubResource("TileSetAtlasSource_dnxap")
 size = Vector2(2028, 1302.5)
 
 [node name="TestLevel" type="Node2D" groups=["level"]]
+position = Vector2(7, 2)
 script = ExtResource("1_u65vw")
 
 [node name="Enemy" parent="." instance=ExtResource("2_2fjev")]
@@ -47,3 +48,6 @@ position = Vector2(133, -46)
 
 [node name="dummy3" parent="." instance=ExtResource("4_4y4i6")]
 position = Vector2(-62, 11)
+
+[node name="LevelEnd" type="Node2D" parent="." groups=["levelEnd"]]
+position = Vector2(283, -36)

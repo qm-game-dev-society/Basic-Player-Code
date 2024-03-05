@@ -5,7 +5,7 @@ var cameraScene : PackedScene
 
 var player : Player
 var level : Level
-var camera : Camera2D
+var camera : PlayerCamera
 
 ## Settings
 var respawnTime : float = 2
@@ -13,6 +13,8 @@ var respawnTime : float = 2
 # values 
 var resetting : bool = false
 var cancelRespawn : bool
+
+var introInProcess : bool
 
 
 func loadLevel(LevelName : String) -> void:
@@ -32,10 +34,12 @@ func loadLevel(LevelName : String) -> void:
 	player = playerScene.instantiate() as Player
 	add_child(player)
 	player.position = level.getSpawnPosition()
+	player.canFire = false
+	player.canMove = false
 	
 	cameraScene = preload("res://main game/PlayerCamera.tscn")
 	camera = cameraScene.instantiate() as Node2D
-	player.add_child(camera)
+	add_child(camera)
 
 	
 	StartLevel()
@@ -60,6 +64,21 @@ func StartLevel():
 	for _node in level.get_children():
 		if _node.is_in_group("deadzone"):
 			_node.body_entered.connect(EnterDeadZone)
+	
+	IntroLevel()
+
+func IntroLevel():
+	var tempCamera : PlayerCamera = camera
+	introInProcess == true
+	for _node in level.get_children():
+		if _node.is_in_group("levelEnd"):
+			tempCamera.setTarget(_node)
+	await get_tree().create_timer(0.75).timeout
+	if tempCamera != null:
+		tempCamera.setTarget(player)
+		player.canMove = true
+		player.canFire = true
+
 
 # Checks if player has entered collsion section and starts respawn procedure
 # if this is the case

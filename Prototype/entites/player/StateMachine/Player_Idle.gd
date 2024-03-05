@@ -20,14 +20,16 @@ func physics_update(delta: float) -> void:
 		player.velocity.x = clamp(player.velocity.x,-player.maxSpeed,0)
 	
 	player.move_and_slide()
-	if not player.is_on_floor():
-		state_machine.transition_to("Air")
-		return
-	elif Input.is_action_pressed("MOVE_left") or Input.is_action_pressed("MOVE_right"):
-		player.velocity = Vector2.ZERO
-		state_machine.transition_to("Run")
-		
-	elif Input.is_action_just_pressed("MOVE_up"):
-		state_machine.transition_to("Air", {"do_jump": true})
+	
+	if player.canMove:
+		if not player.is_on_floor():
+			state_machine.transition_to("Air")
+			return
+		elif Input.is_action_pressed("MOVE_left") or Input.is_action_pressed("MOVE_right"):
+			player.velocity = Vector2.ZERO
+			state_machine.transition_to("Run")
+			
+		elif Input.is_action_just_pressed("MOVE_up"):
+			state_machine.transition_to("Air", {"do_jump": true})
 	
 

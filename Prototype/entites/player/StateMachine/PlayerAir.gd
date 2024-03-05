@@ -15,16 +15,18 @@ func physics_update(delta: float) -> void:
 		- Input.get_action_strength("MOVE_left")
 	)
 	
-	
-	player.velocity.x += player.airSpeed * input_direction_x * delta
-	# Vertical movement.
-	player.velocity.y += player.gravity * delta
-	player.move_and_slide()
+	if player.canMove:
+		player.velocity.x += player.airSpeed * input_direction_x * delta
+		# Vertical movement.
+		player.velocity.y += player.gravity * delta
+		player.move_and_slide()
 
-	player.velocity.x = clamp(player.velocity.x,-player.maxSpeed, player.maxSpeed)
-	# Landing.
-	if player.is_on_floor():
-		if is_equal_approx(player.velocity.x, 0.0):
-			state_machine.transition_to("Idle")
-		else:
-			state_machine.transition_to("Run")
+		player.velocity.x = clamp(player.velocity.x,-player.maxSpeed, player.maxSpeed)
+		# Landing.
+		if player.is_on_floor():
+			if is_equal_approx(player.velocity.x, 0.0):
+				state_machine.transition_to("Idle")
+			else:
+				state_machine.transition_to("Run")
+	else:
+		state_machine.transition_to("Idle")
